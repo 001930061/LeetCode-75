@@ -36,3 +36,48 @@ Follow up: Could you minimize the total number of operations done?
 哪个更快??
 '''
 
+# ------------------------------------
+
+'''
+方法1: Time Complexity = O(n) Space Complexity = O(n)
+'''
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        # 计算0的个数
+        zeros = nums.count(0)
+
+        # 把0都删掉
+        nums[:] = list(filter(lambda x: x != 0, nums))
+
+        # 把删掉的0都在尾部接上去
+        nums.extend([0] * zeros)
+
+'''
+方法2 Time Complexity = O(n) Space Complexity = O(1)
+'''
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+
+        # 初始化非零数的位置为0
+        non_zero_index = 0
+
+        # 遍历这个nums
+        for i in range(len(nums)):
+            # 如果遇到非零的数字
+            if nums[i] != 0:
+                # 把非零的数字写到应该non_zero_index的位置
+                nums[non_zero_index] = nums[i]
+                # 把non_zero_index的位置更新1个
+                non_zero_index += 1
+        
+        # 从目前的non_zero_index到目前的nums的结尾，把零都加上去
+        for j in range(non_zero_index, len(nums)):
+            nums[j] = 0
