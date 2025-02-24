@@ -44,27 +44,25 @@ n == height.length
 class Solution(object):
     def maxArea(self, height):
         """
-        :type height: List[int]
-        :rtype: int
+        :type height: List[int]  # 输入的高度列表，表示每根柱子的高度
+        :rtype: int  # 返回值为最大面积
         """
 
-        # 定义一个左指针，初始化位置为list的开头
+        # 定义一个左指针，初始化位置为列表的开头
         left = 0
-        # 定义一个右指针，初始化位置为list的末尾
+        # 定义一个右指针，初始化位置为列表的末尾
         right = len(height) - 1
 
         # 初始化最大面积为0
         max_area = 0
 
-
-        # 如果height的list长度小于1，那么没法计算面积，直接返回0
+        # 如果height的列表长度小于1，那么没法计算面积，直接返回0
         if len(height) <= 1:
             return 0
 
         # 当两个指针没有相交的时候
         while left < right:
-
-            # 计算目前的area
+            # 计算目前的面积
             current_area = min(height[left], height[right]) * (right - left)
 
             # 如果当前面积更大，那就更新最大面积
@@ -73,9 +71,9 @@ class Solution(object):
             
             # 找左右两个指针哪个是短板，把短板往中间移动
             if height[left] <= height[right]:
-                left += 1
+                left += 1  # 移动左指针
             else:
-                right -= 1
+                right -= 1  # 移动右指针
 
         # 返回最大面积
         return max_area

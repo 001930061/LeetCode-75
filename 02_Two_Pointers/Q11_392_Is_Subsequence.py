@@ -47,9 +47,9 @@ how would you change your code?
 class Solution(object):
     def isSubsequence(self, s, t):
         """
-        :type s: str
-        :type t: str
-        :rtype: bool
+        :type s: str  # 输入的字符串s
+        :type t: str  # 输入的字符串t
+        :rtype: bool  # 返回值为布尔值，表示s是否为t的子序列
         """
 
         # 这里初始化从s中读取的指针
@@ -58,24 +58,20 @@ class Solution(object):
         length_s = len(s)
         length_t = len(t)
 
-
         # 由于空字符串是所有字符串的子字符串，所以直接返回True
         if length_s == 0:
             return True
 
-
-        # 遍历t
+        # 遍历t字符串
         for checker in range(length_t):
             # 如果找到匹配的字符
             if t[checker] == s[reader]:
                 # reader的指针向后移动一位
                 reader += 1
 
-                # 如果s中的最后一个都匹配完成了, 那么直接返回True
+                # 如果s中的最后一个字符都匹配完成了, 那么直接返回True
                 if reader == length_s:
                     return True
         
         # s中还有元素没能匹配，返回False
         return False
-
-        

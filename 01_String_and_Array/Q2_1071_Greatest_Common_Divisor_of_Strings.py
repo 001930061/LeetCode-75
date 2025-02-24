@@ -44,24 +44,24 @@ class Solution(object):
         :rtype: str
         """
 
-        # 这里定义一个欧几里得算法
+        # 定义一个函数，用于计算两个数的最大公约数（GCD）
         def gcd(a, b):
-
-            # b不等于0的时候
+            # 当 b 不等于 0 时，继续计算
             while b:
-                # 辗转相处法
+                # 使用辗转相除法更新 a 和 b 的值
                 a, b = b, a % b
             
-            # 最后返回最大公约数
+            # 返回最终的最大公约数
             return a
         
-        # 如果两个字符串拼接的顺序会影响拼接的结果
-        # 那么这两个字符串不存在最大公约string
+        # 检查 str1 + str2 是否等于 str2 + str1
+        # 如果不相等，说明这两个字符串不可能有共同的最大公约字符串
         if str1 + str2 != str2 + str1:
-            return ''
+            return ''  # 返回空字符串，表示不存在最大公约字符串
 
-        # 获取最大公约string的长度
+        # 获取 str1 和 str2 长度的最大公约数
         gcd_lens = gcd(len(str1), len(str2))
 
-        # 这里直接从某一个string上截取这个长度并返回就可以了
+        # 通过截取 str1 的前 gcd_lens 个字符返回最大公约字符串
+        # 因为根据上述条件，str1 和 str2 必然可以由这个子字符串重复构成
         return str1[:gcd_lens]

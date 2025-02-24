@@ -40,17 +40,17 @@ in the reversed string.
 class Solution(object):
     def reverseWords(self, s):
         """
-        :type s: str
-        :rtype: str
+        :type s: str  # 输入的字符串，包含一个或多个单词
+        :rtype: str   # 返回反转单词顺序后的字符串
         """
-        # 先把string拆散
+        # 先把字符串拆分成单词，使用空格作为分隔符
         string = s.split()
 
-        # 把每个单词加到stack里面
+        # 将每个单词添加到栈中
         stack = [word for word in string]
         
-        # 把stack的顺序颠倒
+        # 将栈中的单词顺序颠倒
         stack.reverse()
 
-        # 把stack 用空格拼起来，返回
+        # 将栈中的单词用空格拼接起来，返回反转后的字符串
         return ' '.join(stack)

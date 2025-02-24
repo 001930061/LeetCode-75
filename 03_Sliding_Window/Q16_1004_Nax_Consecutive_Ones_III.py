@@ -29,20 +29,25 @@ nums[i] is either 0 or 1.
 class Solution(object):
     def longestOnes(self, nums, k):
         """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
+        :type nums: List[int]  # 输入的二进制数组（仅包含0和1）
+        :type k: int  # 允许翻转的0的数量
+        :rtype: int  # 返回最长的包含最多1的连续子数组的长度
         """
-        left = 0
+        left = 0  # 初始化左指针
 
+        # 遍历整个数组
         for right in range(len(nums)):
+            # 如果当前右指针指向的数字是0，减少k
             if nums[right] == 0:
                 k -= 1
             
+            # 如果k小于0，说明翻转的0的数量超过了允许的数量
             if k < 0:
+                # 如果左指针指向的数字是0，恢复k
                 if nums[left] == 0:
                     k += 1
+                # 左指针右移，缩小窗口
                 left += 1
 
-        
+        # 返回当前窗口的长度，即为最大连续1的长度
         return right - left + 1

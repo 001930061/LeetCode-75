@@ -45,13 +45,13 @@ Follow up: Can you solve the problem in O(1) extra space complexity?
 class Solution(object):
     def productExceptSelf(self, nums):
         """
-        :type nums: List[int]
-        :rtype: List[int]
+        :type nums: List[int]  # 输入的整数列表
+        :rtype: List[int]      # 返回一个整数列表，表示每个元素除自身外的乘积
         """
         # 获取数字列表的长度
         n = len(nums)
 
-        # 初始化所有答案为1, 不能为0, 否则怎么都会输出0
+        # 初始化所有答案为1, 不能为0, 否则最后结果都会输出0
         answers = [1] * n
 
         '''计算左乘积'''
@@ -61,17 +61,17 @@ class Solution(object):
         for i in range(n):
             # 把每个对应的结果更新为左乘积
             answers[i] = left_product
-            # 更新左乘积
+            # 更新左乘积，乘以当前数字
             left_product *= nums[i]
         
         '''计算右乘积'''
         # 初始化右乘积
         right_product = 1
         # 从右往左遍历
-        for i in range(n-1, -1, -1):
+        for i in range(n - 1, -1, -1):
             # 把每个对应结果上的左乘积乘以目前的右乘积
             answers[i] *= right_product
-            # 更新右乘积
+            # 更新右乘积，乘以当前数字
             right_product *= nums[i]
 
         # 返回结果

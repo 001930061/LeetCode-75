@@ -51,43 +51,41 @@ chars[i] is a lowercase English letter, uppercase English letter, digit, or symb
 class Solution(object):
     def compress(self, chars):
         """
-        :type chars: List[str]
-        :rtype: int
+        :type chars: List[str]  # 输入的字符列表
+        :rtype: int             # 返回压缩后的字符长度
         """
 
-        writer = 0 # 用来计数结果长度
-        reader = 0 # 用来锁定index在chars的位置
+        writer = 0  # 用于记录压缩后的字符写入位置
+        reader = 0  # 用于遍历原字符列表的指针
 
-        # 检索一遍chars
+        # 开始遍历字符列表
         while reader < len(chars):
-
-            # 先收集目前的char
+            # 记录当前字符
             current_char = chars[reader]
-            # 初始化个数为0
+            # 初始化计数器
             count = 0
 
-            # 在chars的范围内，找连续的相同chars
+            # 查找连续相同的字符
             while reader < len(chars) and current_char == chars[reader]:
-                # 计数更新
+                # 更新计数器
                 count += 1
-                # 读取位置更新
+                # 移动读取指针到下一个字符
                 reader += 1
             
-            '''此时已经遇到了新的char'''
-            # 更新新的char
+            '''此时已经遇到了新的字符'''
+            # 将当前字符写入到压缩后的字符列表中
             chars[writer] = current_char
-            # 写的位置更新
+            # 移动写入指针到下一个位置
             writer += 1
 
-            # 如果计数大于1，意味着我们需要写到结果里
+            # 如果计数大于1，表示有多个相同的字符，需要写入计数
             if count > 1:
-                # 把数字拆散成一个一个字符串
+                # 将计数拆分为字符串形式，逐个字符写入
                 for digit in str(count):
-
-                    # 写进结果里面
+                    # 将数字写入压缩后的字符列表
                     chars[writer] = digit
-                    # 更新写的位置
+                    # 移动写入指针到下一个位置
                     writer += 1
 
-        # 返回结果
+        # 返回压缩后字符的长度
         return writer

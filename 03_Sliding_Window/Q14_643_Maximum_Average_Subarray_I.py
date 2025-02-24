@@ -36,16 +36,22 @@ n == nums.length
 class Solution(object):
     def findMaxAverage(self, nums, k):
         """
-        :type nums: List[int]
-        :type k: int
-        :rtype: float
+        :type nums: List[int]  # 输入的整数列表
+        :type k: int  # 连续子数组的大小
+        :rtype: float  # 返回最大平均值
         """
+        # 计算第一个大小为k的窗口的和
         window = sum(nums[:k])
 
+        # 初始化最大和为第一个窗口的和
         max_sum = window
 
+        # 从索引k开始遍历到列表的末尾
         for i in range(k, len(nums)):
-            window = window - nums[i-k] + nums[i]
+            # 更新窗口的和，去掉窗口的最左边的元素，加入新的元素
+            window = window - nums[i - k] + nums[i]
+            # 更新最大和
             max_sum = max(max_sum, window)
         
+        # 返回最大和除以k，得到平均值
         return float(max_sum) / k

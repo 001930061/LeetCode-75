@@ -91,44 +91,42 @@ class Solution(object):
 class Solution(object):
     def canPlaceFlowers(self, flowerbed, n):
         """
-        :type flowerbed: List[int]
-        :type n: int
-        :rtype: bool
+        :type flowerbed: List[int]  # 表示花坛，1表示已有花，0表示空地
+        :type n: int                 # 需要种植的花的数量
+        :rtype: bool                 # 返回是否可以种下 n 朵花
         """
 
-        # 如果不需要种花
+        # 如果不需要种花，直接返回 True
         if n == 0:
             return True
         
-        # 获取flowerbed的长度用于检索
+        # 获取花坛的长度，用于后续的索引检索
         length = len(flowerbed)
 
-        # 对可以种花的位置进行计数
+        # 用于记录可以种花的位置数量
         count = 0
 
-        # 遍历flowerbed上所有的位置
+        # 遍历花坛上所有的位置
         for i in range(length):
 
-            # 如果当前位置是空着的
+            # 如果当前位置是空着的（0）
             if flowerbed[i] == 0:
 
-                # 检查左边的位置
+                # 检查左边的位置是否为空
                 left_empty = (i == 0 or flowerbed[i-1] == 0)
-                # 检查右边的位置
+                # 检查右边的位置是否为空
                 right_empty = (i == length - 1 or flowerbed[i+1] == 0)
 
-                # 如果左右都是空着的
+                # 如果左右都是空着的，可以种花
                 if left_empty and right_empty:
-                    # 把这个位置标记为1
+                    # 在当前位置种下花（标记为1）
                     flowerbed[i] = 1
-                    # 更新count的数量
+                    # 更新可种花的数量
                     count += 1
 
-                    # 跳过下一个位置
+                    # 跳过下一个位置，避免相邻种花
                     i += 1
             
-        
-        # 最后对比可以种花位置的数量和需要的数量
+        # 最后，比较可以种花的位置数量和需要的数量
         return count >= n
-
 

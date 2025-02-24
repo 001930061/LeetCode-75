@@ -44,16 +44,16 @@ Follow up: Could you minimize the total number of operations done?
 class Solution(object):
     def moveZeroes(self, nums):
         """
-        :type nums: List[int]
-        :rtype: None Do not return anything, modify nums in-place instead.
+        :type nums: List[int]  # 输入的整数列表
+        :rtype: None           # 函数不返回任何值，而是直接修改输入列表
         """
-        # 计算0的个数
+        # 计算列表中0的个数
         zeros = nums.count(0)
 
-        # 把0都删掉
+        # 使用filter函数将所有非0的元素保留下来，更新nums为新列表
         nums[:] = list(filter(lambda x: x != 0, nums))
 
-        # 把删掉的0都在尾部接上去
+        # 在nums的末尾添加之前计算的0的个数
         nums.extend([0] * zeros)
 
 '''
@@ -62,22 +62,22 @@ class Solution(object):
 class Solution(object):
     def moveZeroes(self, nums):
         """
-        :type nums: List[int]
-        :rtype: None Do not return anything, modify nums in-place instead.
+        :type nums: List[int]  # 输入的整数列表
+        :rtype: None           # 函数不返回任何值，而是直接修改输入列表
         """
 
-        # 初始化非零数的位置为0
+        # 初始化非零数的位置为0，非零数将会被写入到这个索引位置
         non_zero_index = 0
 
-        # 遍历这个nums
+        # 遍历整个nums列表
         for i in range(len(nums)):
-            # 如果遇到非零的数字
+            # 如果当前元素不是0
             if nums[i] != 0:
-                # 把非零的数字写到应该non_zero_index的位置
+                # 把非零的数字写到应该放置的位置
                 nums[non_zero_index] = nums[i]
-                # 把non_zero_index的位置更新1个
+                # 更新非零位置索引，准备放置下一个非零元素
                 non_zero_index += 1
         
-        # 从目前的non_zero_index到目前的nums的结尾，把零都加上去
+        # 从目前的non_zero_index位置到nums的结尾，将剩余的位置填充为0
         for j in range(non_zero_index, len(nums)):
             nums[j] = 0

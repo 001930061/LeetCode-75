@@ -40,28 +40,33 @@ s consists of lowercase English letters.
 class Solution(object):
     def maxVowels(self, s, k):
         """
-        :type s: str
-        :type k: int
-        :rtype: int
+        :type s: str  # 输入的字符串
+        :type k: int  # 子串的长度
+        :rtype: int  # 返回最大元音字母的数量
         """
+        # 定义元音字母的集合
         vowels = {'a', 'e', 'i', 'o', 'u'}
 
-        max_vowels = 0
-        count = 0
+        max_vowels = 0  # 初始化最大元音数量
+        count = 0  # 初始化当前窗口中的元音数量
 
+        # 计算第一个长度为k的子串中的元音数量
         for i in range(k):
             if s[i] in vowels:
                 count += 1
             
-        max_vowels = count
+        max_vowels = count  # 更新最大元音数量
 
+        # 从索引k开始，滑动窗口
         for i in range(k, len(s)):
+            # 如果窗口的最左边字符是元音，减少计数
             if s[i - k] in vowels:
                 count -= 1
+            # 如果新进入窗口的字符是元音，增加计数
             if s[i] in vowels:
                 count += 1
+            # 更新最大元音数量
             max_vowels = max(max_vowels, count)
 
-        return max_vowels
-
+        return max_vowels  # 返回最大元音数量
 

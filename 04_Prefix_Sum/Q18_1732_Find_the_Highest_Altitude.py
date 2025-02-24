@@ -29,14 +29,15 @@ n == gain.length
 class Solution(object):
     def largestAltitude(self, gain):
         """
-        :type gain: List[int]
-        :rtype: int
+        :type gain: List[int]  # 输入的高度变化数组
+        :rtype: int  # 返回最高的海拔高度
         """
-        sum = 0
+        sum = 0  # 初始化当前高度为0
+        max_h = 0  # 初始化最大高度为0
 
-        max_h = 0
+        # 遍历高度变化数组
         for i in range(len(gain)):
-            sum += gain[i]
-            max_h = max(max_h, sum)
-        
-        return max_h
+            sum += gain[i]  # 更新当前高度
+            max_h = max(max_h, sum)  # 更新最大高度，比较当前高度和最大高度
+
+        return max_h  # 返回最大高度

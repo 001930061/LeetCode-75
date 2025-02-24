@@ -46,28 +46,27 @@ Follow up: Could you implement a solution that runs in O(n) time complexity and 
 class Solution(object):
     def increasingTriplet(self, nums):
         """
-        :type nums: List[int]
-        :rtype: bool
+        :type nums: List[int]  # 输入的整数列表
+        :rtype: bool          # 返回布尔值，表示是否存在满足条件的三元组
         """
 
-        # 先初始化两个最大的float
-        min_1 = float('inf')
-        min_2 = float('inf')
+        # 先初始化两个最大的 float，用于存储最小和次小的数
+        min_1 = float('inf')  # 第一个最小值
+        min_2 = float('inf')  # 第二个最小值
 
-        # 从左向右遍历一次这个array
+        # 从左向右遍历一次这个数组
         for num in nums:
-
-            # 如果遇到比最小的数还小，更新最小的数
+            # 如果当前数字小于等于第一个最小值，更新最小值
             if num <= min_1:
                 min_1 = num
 
-            # 如果遇到比次小的数小但是比最小数大的，更新次小数
+            # 如果当前数字小于等于第二个最小值，但大于第一个最小值，更新次小值
             elif num <= min_2:
                 min_2 = num
 
-            # 如果遇到比最小数和次小数还要大的，那么就说明答案存在
+            # 如果当前数字大于第一个和第二个最小值，说明找到了一个满足条件的三元组
             else:
                 return True
         
-        # 如果遍历完成都没有找到比次小数大的数，那么失败        
+        # 如果遍历完成都没有找到比次小值大的数，返回 False
         return False

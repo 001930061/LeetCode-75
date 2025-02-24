@@ -88,25 +88,25 @@ class Solution_Wrong(object):
 class Solution(object):
     def reverseVowels(self, s):
         """
-        :type s: str
-        :rtype: str
+        :type s: str  # 输入的字符串
+        :rtype: str   # 返回的字符串
         """
         # 首先我们定义元音字母
         vowels = 'aeiouAEIOU'
 
-        # 然后我们打散这个string
+        # 将输入字符串转换为列表，以便进行修改
         string = list(s)
 
-        # 接着我们定义一个stack，实际是个list,然后进行第一次遍历
+        # 定义一个栈，用于存放字符串中的元音字母
+        # 这里使用列表推导式遍历字符串，将所有元音字母存入栈
         stack = [char for char in string if char in vowels]
 
-        # 我们这里进行第二次遍历，注意这里使用index而非char
+        # 对字符串进行第二次遍历，使用索引而非字符
         for i in range(len(string)):
-            # 如果遇到了元音
+            # 如果当前字符是元音字母
             if string[i] in vowels:
-
-                # stack最末尾的字符拿出来更改string上元音字母的赋值
+                # 从栈中弹出最末尾的元音字母并替换当前元音
                 string[i] = stack.pop(-1)
         
-        # 拼接并返回字符串
+        # 将列表重新拼接为字符串并返回
         return ''.join(string)

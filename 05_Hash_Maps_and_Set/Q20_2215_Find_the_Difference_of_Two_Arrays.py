@@ -33,15 +33,19 @@ Constraints:
 class Solution(object):
     def findDifference(self, nums1, nums2):
         """
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: List[List[int]]
+        :type nums1: List[int]  # 第一个整数列表
+        :type nums2: List[int]  # 第二个整数列表
+        :rtype: List[List[int]]  # 返回两个列表，分别包含两个列表的差异
         """
 
+        # 将输入列表转换为集合，以便于进行集合运算
         nums1 = set(nums1)
         nums2 = set(nums2)
 
+        # 计算 nums1 中有但 nums2 中没有的元素
         result1 = nums1 - nums2
+        # 计算 nums2 中有但 nums1 中没有的元素
         result2 = nums2 - nums1
 
+        # 将结果转换为列表并返回
         return [list(result1), list(result2)]

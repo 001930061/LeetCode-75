@@ -29,15 +29,19 @@ Constraints:
 class Solution(object):
     def uniqueOccurrences(self, arr):
         """
-        :type arr: List[int]
-        :rtype: bool
+        :type arr: List[int]  # 输入整数列表
+        :rtype: bool  # 返回布尔值，指示元素出现次数是否唯一
         """
 
+        # 创建一个字典，用于存储每个数字的出现次数
         count = {}
 
+        # 遍历输入列表，统计每个数字的出现次数
         for num in arr:
             count[num] = count.get(num, 0) + 1
         
+        # 获取所有出现次数，并将其存入集合
         occurrence = set(count.values())
 
+        # 判断不同数字的数量是否等于不同出现次数的数量
         return len(count) == len(occurrence)

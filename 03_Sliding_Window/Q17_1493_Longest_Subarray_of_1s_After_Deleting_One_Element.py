@@ -29,28 +29,31 @@ Constraints:
 1 <= nums.length <= 105
 nums[i] is either 0 or 1.
 '''
-
 class Solution(object):
     def longestSubarray(self, nums):
         """
-        :type nums: List[int]
-        :rtype: int
+        :type nums: List[int]  # 输入的二进制数组（仅包含0和1）
+        :rtype: int  # 返回最长的连续1的子数组的长度
         """
+        left = 0  # 初始化左指针
+        k = 1  # 允许删除的0的数量，最多为1
+        max_length = 0  # 最大长度的初始化
 
-        left = 0
-        k = 1
-        max_length = 0
-
+        # 遍历整个数组，右指针从0到len(nums)-1
         for right in range(len(nums)):
+            # 如果当前右指针指向的数字是0，减少k
             if nums[right] == 0:
                 k -= 1
 
+            # 如果k小于0，说明已经删除了超过允许的0
             if k < 0:
+                # 如果左指针指向的数字是0，恢复k
                 if nums[left] == 0:
                     k += 1
-                
+                # 左指针右移，缩小窗口
                 left += 1
             
+            # 更新最大长度，当前窗口的长度为right - left
             max_length = max(max_length, right - left)
 
-        return max_length
+        return max_length  # 返回找到的最长连续1的长度

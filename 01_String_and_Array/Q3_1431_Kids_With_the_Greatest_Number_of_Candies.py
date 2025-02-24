@@ -45,14 +45,14 @@ Output: [true,false,true]
 class Solution(object):
     def kidsWithCandies(self, candies, extraCandies):
         """
-        :type candies: List[int]
-        :type extraCandies: int
-        :rtype: List[bool]
+        :type candies: List[int]  # 孩子们手中原有的糖果数量
+        :type extraCandies: int    # 额外的糖果数量
+        :rtype: List[bool]         # 返回一个布尔值列表，表示每个孩子是否能拥有最多的糖果
         """
 
-        # 首先我们需要寻找最多candy的孩子手上有多少candy
-        max_candy = max(candies)
+        # 首先，我们需要找到孩子中手上最多糖果的数量
+        max_candy = max(candies)  # 使用 max 函数找到最大糖果数量
 
-        # 接着我们创建一个list，在这个list里面，如果原来手上的candy数量加上extra candies之后
-        # 大于等于max candies，对应的值就位True，否则为False
+        # 接着，我们使用列表推导式创建一个布尔值列表
+        # 遍历每个孩子手上的糖果数量，如果该孩子手上的糖果加上额外的糖果大于等于最大糖果数量，则为 True；否则为 False
         return [candy + extraCandies >= max_candy for candy in candies]

@@ -39,23 +39,26 @@ Apply Operation 2: "baaccc" -> "abbccc"
 class Solution(object):
     def closeStrings(self, word1, word2):
         """
-        :type word1: str
-        :type word2: str
-        :rtype: bool
+        :type word1: str  # 输入字符串1
+        :type word2: str  # 输入字符串2
+        :rtype: bool  # 返回布尔值，指示两个字符串是否可以通过重排列字符变为相同
         """
         # 如果两个字符串的长度不一样，直接返回 False
         if len(word1) != len(word2):
             return False
 
-        # 统计字符频率
+        # 初始化字符频率字典
         count1 = {}
         count2 = {}
 
+        # 统计word1中每个字符的出现频率
         for char in word1:
             count1[char] = count1.get(char, 0) + 1
+        
+        # 统计word2中每个字符的出现频率
         for char in word2:
             count2[char] = count2.get(char, 0) + 1
         
         # 比较字符集和频率集
-        return (set(count1.keys()) == set(count2.keys()) and
-                sorted(count1.values()) == sorted(count2.values()))
+        return (set(count1.keys()) == set(count2.keys()) and  # 比较字符是否相同
+                sorted(count1.values()) == sorted(count2.values()))  # 比较频率是否相同

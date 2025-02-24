@@ -63,47 +63,43 @@ class Solution(object):
         :type word2: str
         :rtype: str
         """
-        # 分别为两个string定义指针, 用于读取char
+        # 定义两个指针，index_a 用于指向 word1 的当前字符位置，index_b 用于指向 word2 的当前字符位置
         index_a, index_b = 0, 0
 
-        # 定义一个列表用于存储收集到的chars
+        # 定义一个列表，用于存储交替合并后的字符
         result = []
 
-        # 定义两个integers来表示两个字符串的长度
+        # 获取两个字符串的长度，分别存储在 lens_1 和 lens_2 中
         lens_1, lens_2 = len(word1), len(word2)
 
-        # 依次分别冲两个string里面按顺序取char, 指导某一个指针到达字符串的末尾
-        # 定义条件: 当a指针和b指针都不超过字符串最末尾位置的时候
+        # 当两个指针都没有超过各自字符串的长度时，继续进行交替合并
         while index_a < lens_1 and index_b < lens_2:
-            # 先把word1中的字符加到result里面去
+            # 从 word1 中取出当前指针指向的字符，并将其添加到结果列表中
             result.append(word1[index_a])
-            # 再把word2中的字符加到result里面去
+            # 从 word2 中取出当前指针指向的字符，并将其添加到结果列表中
             result.append(word2[index_b])
 
-            # 更新word1中的指针位置，即向后移一位
+            # 更新指针，index_a 向后移动一位，以便指向下一个字符
             index_a += 1
-            # 更新word2中的指针位置，即向后移一位
+            # 更新指针，index_b 向后移动一位，以便指向下一个字符
             index_b += 1
         
-
         '''
-         这个时候, index_a 或 index_b中的一个已经到大了对应字符串的末尾
-         问题是我们并不知道是index_a还是index_b。
+         到这里时，可能有一个指针已经到达其对应字符串的末尾。
+         需要检查是哪个指针到达了末尾。
         '''
 
-        # 如果是index_a没有到达word1的末尾，即：指针小于word1的长度
-        # Notice: 因为是在21行之后的26行更新位置，所以这里的判别条件是小于lens_1
+        # 如果 index_a 还没有到达 word1 的末尾，说明 word1 还有剩余字符
         if index_a < lens_1:
-            # 把word1中的剩余部分加到result里面
+            # 将 word1 中剩余的部分（从 index_a 到结束）添加到结果列表中
             result.append(word1[index_a:])
         
-        # 如果是index_b没有到达word2的末尾
+        # 如果 index_b 还没有到达 word2 的末尾，说明 word2 还有剩余字符
         if index_b < lens_2:
-            # 把word2中的剩余部分加到result里面
+            # 将 word2 中剩余的部分（从 index_b 到结束）添加到结果列表中
             result.append(word2[index_b:])
 
         '''
-         由于最后输出的要求是字符串, 这里调用join方法把
-         所有的字符拼在一起输出
+         最后，使用 ''.join(result) 将列表中的所有字符拼接成一个字符串并返回
         '''        
         return ''.join(result)

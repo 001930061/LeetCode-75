@@ -44,19 +44,24 @@ Constraints:
 class Solution(object):
     def pivotIndex(self, nums):
         """
-        :type nums: List[int]
-        :rtype: int
+        :type nums: List[int]  # 输入的数字列表
+        :rtype: int  # 返回枢轴索引或-1
         """
         
-        prefix_sum = 0
-        suffix_sum = sum(nums[1:])
+        prefix_sum = 0  # 初始化前缀和为0
+        suffix_sum = sum(nums[1:])  # 计算后缀和，从第二个元素开始
+
+        # 检查第一个元素是否为枢轴
         if prefix_sum == suffix_sum:
-                return 0
+            return 0
 
+        # 从第二个元素开始遍历
         for i in range(1, len(nums)):         
-            prefix_sum += nums[i-1]
-            suffix_sum -= nums[i]
+            prefix_sum += nums[i-1]  # 更新前缀和，加入当前元素的前一个
+            suffix_sum -= nums[i]  # 更新后缀和，去掉当前元素
 
+            # 检查当前索引是否为枢轴索引
             if prefix_sum == suffix_sum:
-                return i
-        return -1
+                return i  # 返回当前索引
+        
+        return -1  # 如果没有找到枢轴索引，返回-1
