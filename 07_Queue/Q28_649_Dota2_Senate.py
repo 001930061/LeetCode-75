@@ -40,4 +40,34 @@ n == senate.length
 1 <= n <= 104
 senate[i] is either 'R' or 'D'.
 '''
+class Solution(object):
+    def predictPartyVictory(self, senate):
+        """
+        :type senate: str
+        :rtype: str
+        """
+        from collections import deque
 
+        radiant_queue = deque()
+        dire_queue = deque()
+
+        # 将参议员的索引分别加入到两个队列中
+        for i, char in enumerate(senate):
+            if char == 'R':
+                radiant_queue.append(i)
+            else:
+                dire_queue.append(i)
+
+        # 模拟投票过程
+        while radiant_queue and dire_queue:
+            radiant_index = radiant_queue.popleft()
+            dire_index = dire_queue.popleft()
+
+            # 比较索引，先到达的参议员会投票淘汰对方
+            if radiant_index < dire_index:
+                radiant_queue.append(radiant_index + len(senate))  # R 继续存活，加入下一轮
+            else:
+                dire_queue.append(dire_index + len(senate))  # D 继续存活，加入下一轮
+
+        # 返回胜利的党派
+        return "Radiant" if radiant_queue else "Dire"
